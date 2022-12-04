@@ -1,7 +1,9 @@
+
 import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:kelebikev2/ui/views/sign_in.dart';
 
 import '../../ui/views/view_login.dart';
 import '../../ui/views/view_splash.dart';
@@ -12,6 +14,7 @@ export 'service_route.gr.dart';
   routes: <AutoRoute>[
     AutoRoute(path: '/splash', page: ViewSplash),
     AutoRoute(path: '/login', page: ViewLogin),
+    AutoRoute(path: '/sign_in', page:SignIn),
 
     RedirectRoute(path: '*', redirectTo: '/splash'),
   ],

@@ -1,41 +1,52 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:kelebikev2/ui/views/sign_in/sign_in.dart';
+import 'package:get/get.dart';
+import 'package:kelebikev2/ui/views/sign_in.dart';
+import 'package:kelebikev2/ui/views/view_login.dart';
+import 'core/services/localization_service.dart';
+import 'firebase_options.dart';
 
-void main() {
-  runApp(const MyApp());
+final FirebaseAuth _auth = FirebaseAuth.instance;
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
+  final User? _user = FirebaseAuth.instance.currentUser;
+  bool loggedIn = false;
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
+    Widget startPage = SignIn();
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-  final String title;
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
+    if (_user?.email == "admin") {
+      startPage = ViewLogin();
+    } else {
+      startPage = SignIn();
+    }
 
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: const SignIn()
-    );
+    var localizationController = Get.put(LocalizationController());
+
+    return GetBuilder(
+        init: localizationController,
+        builder: (LocalizationController controller) {
+          return MaterialApp(
+            title: 'Kelebike',
+            debugShowCheckedModeBanner: false,
+            home: startPage,
+            locale: controller.currentLanguage != ''
+                ? Locale(controller.currentLanguage, '')
+                : null,
+            localeResolutionCallback:
+                LocalizationService.localeResolutionCallBack,
+            supportedLocales: LocalizationService.supportedLocales,
+            localizationsDelegates: LocalizationService.localizationsDelegate,
+          );
+        });
   }
 }
