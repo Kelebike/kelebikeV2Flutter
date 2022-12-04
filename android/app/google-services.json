@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "143823499442",
+    "project_id": "kelebike-v2",
+    "storage_bucket": "kelebike-v2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:143823499442:android:4d6e91662fefa3f86f59ab",
+        "android_client_info": {
+          "package_name": "com.example.kelebike"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "143823499442-3vuacjenl64apa6j5phve6e5rcv2n3jv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0fCw5Eq5PMYdVkDIvFA6ieAyArEhxMHk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "143823499442-3vuacjenl64apa6j5phve6e5rcv2n3jv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "143823499442-64ug5r0pvi7ukaaoja2tj6oc9nuv6r87.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "bisquit.kelebike"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:143823499442:android:fca31614fae84c496f59ab",
+        "android_client_info": {
+          "package_name": "com.example.kelebikev2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "143823499442-3vuacjenl64apa6j5phve6e5rcv2n3jv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0fCw5Eq5PMYdVkDIvFA6ieAyArEhxMHk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "143823499442-3vuacjenl64apa6j5phve6e5rcv2n3jv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "143823499442-64ug5r0pvi7ukaaoja2tj6oc9nuv6r87.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "bisquit.kelebike"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
