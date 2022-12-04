@@ -36,64 +36,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
     User? _user = FirebaseAuth.instance.currentUser;
     var size = MediaQuery.of(context).size;
 
-<<<<<<< HEAD
-    return StreamBuilder<QuerySnapshot>(
-      stream: _historyService.getHistory(),
-      builder: (context, snaphot) {
-        return !snaphot.hasData
-            ? const CircularProgressIndicator()
-            : ListView.builder(
-                itemCount: snaphot.data!.docs.length,
-                itemBuilder: (context, index) {
-                  DocumentSnapshot mypost = snaphot.data!.docs[index];
-                  String _bike = "${mypost['bike']}";
-                  var infoBike = parse(_bike);
-                  print(infoBike[1]);
-
-                  if (_user!.email.toString() ==
-                      infoBike[0]
-                          .toString()
-                          .substring(8, infoBike[0].toString().length)) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: InkWell(
-                        onTap: () {},
-                        child: Container(
-                          height: size.height * .2,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              border: Border.all(
-                                  color: const Color(0xFF6CA8F1), width: 2),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(10))),
-                          child: Padding(
-                            padding: const EdgeInsets.all(1.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Text("Bike: "),
-                                Text(infoBike[0]),
-                                Text(infoBike[1]),
-                                Text(infoBike[2]),
-                                Text(infoBike[3]),
-                                Text(infoBike[4]),
-                                Text(infoBike[5]),
-                                Text(infoBike[6]),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    );
-                  } else {
-                    return const SizedBox.shrink();
-                  }
-                });
-      },
-=======
     return Container(
       alignment: FractionalOffset.center,
       color: const Color.fromARGB(255, 201, 226, 101),
@@ -152,7 +94,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
                   });
         },
       ),
->>>>>>> parent of e94be32 (ui change)
     );
   }
 }

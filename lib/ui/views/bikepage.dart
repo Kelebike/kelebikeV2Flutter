@@ -40,11 +40,7 @@ class _BikePageState extends State<BikePage> {
                 itemCount: snaphot.data!.docs.length,
                 itemBuilder: (context, index) {
                   DocumentSnapshot mypost = snaphot.data!.docs[index];
-<<<<<<< HEAD
-                  if ('${mypost['return']}' != "nontaken") {
-=======
                   if ('${mypost['returnDate']}' != "nontaken") {
->>>>>>> parent of e94be32 (ui change)
                     if (DateTime.parse('${mypost['return']}')
                         .isBefore(DateTime.now())) {
                       _bikeService.updateStatus('${mypost['code']}', "expired");

@@ -1,11 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-<<<<<<< HEAD
-=======
 import 'package:google_fonts/google_fonts.dart';
 
->>>>>>> parent of e94be32 (ui change)
 import '../../core/services/history_service.dart';
 
 List<List<String>> itemList = [];
@@ -34,15 +31,6 @@ class _AdminHistoryScreenState extends State<AdminHistoryScreen> {
     var parts = s.split(',');
     parts[0] = parts[0]
         .toString()
-<<<<<<< HEAD
-        .substring(7, parts[0].toString().length); //account 0
-    parts[1] =
-        parts[1].toString().substring(6, parts[1].toString().length); //code 1
-    parts[3] =
-        parts[3].toString().substring(8, parts[3].toString().length); //issued 3
-    parts[5] =
-        parts[5].toString().substring(8, parts[5].toString().length); //return 5
-=======
         .substring(8, parts[0].toString().length); //owner 0
     parts[1] =
         parts[1].toString().substring(12, parts[1].toString().length); //issuedDate 1
@@ -52,7 +40,6 @@ class _AdminHistoryScreenState extends State<AdminHistoryScreen> {
         parts[3].toString().substring(6, parts[3].toString().length); //issued 3
     parts[5] =
         parts[5].toString().substring(15, parts[5].toString().length); //return 5
->>>>>>> parent of e94be32 (ui change)
 
     return parts;
   }
@@ -101,11 +88,7 @@ class _AdminHistoryScreenState extends State<AdminHistoryScreen> {
                       child: InkWell(
                         onTap: () {},
                         child: Container(
-<<<<<<< HEAD
-                          height: size.height * .2,
-=======
                           height: 130,
->>>>>>> parent of e94be32 (ui change)
                           decoration: BoxDecoration(
                               color: Colors.white,
                               border: Border.all(
@@ -115,20 +98,6 @@ class _AdminHistoryScreenState extends State<AdminHistoryScreen> {
                           child: Padding(
                             padding: const EdgeInsets.all(1.0),
                             child: Column(
-<<<<<<< HEAD
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Text("Bike: "),
-                                Text(infoBike[0]),
-                                Text(infoBike[1]),
-                                Text(infoBike[2]),
-                                Text(infoBike[3]),
-                                Text(infoBike[4]),
-                                Text(infoBike[5]),
-                                Text(infoBike[6]),
-                                const SizedBox(
-                                  height: 10,
-=======
                               children: [
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -170,7 +139,6 @@ class _AdminHistoryScreenState extends State<AdminHistoryScreen> {
                                     const Text("Kilit: ",style: TextStyle(fontWeight: FontWeight.bold)),
                                     Text(infoBike[3]),
                                   ],
->>>>>>> parent of e94be32 (ui change)
                                 ),
                               ],
                             ),

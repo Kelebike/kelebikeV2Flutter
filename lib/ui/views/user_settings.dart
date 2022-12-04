@@ -29,18 +29,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
   bool _toggle = false;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: const Color(0xFF6CA8F1),
-        elevation: 0,
-        title: Text(
-          LocalizationService.of(context).translate('settings')!,
-        ),
-        centerTitle: false,
-      ),
-      body: SettingsList(
+    return Container(
+      alignment: FractionalOffset.center,
+      color: const Color.fromARGB(255, 201, 226, 101),
+      child: SettingsList(
         sections: [
           SettingsSection(
             title: const Text("Personal"), //todo
