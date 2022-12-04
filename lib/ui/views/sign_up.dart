@@ -14,8 +14,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _passswordAgainController = TextEditingController();
-  final _CheckBoxController = TextEditingController();
-  final bool _validatePass = false;
   final AuthService _authService = AuthService();
   bool isChecked = false;
   Widget _buildEmailTF() {

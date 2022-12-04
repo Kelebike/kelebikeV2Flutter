@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kelebikev2/ui/views/sign_in.dart';
+import 'package:kelebikev2/ui/views/take_bike_page.dart';
 
 import '../../core/services/bike_service.dart';
 import '../../core/services/blacklist_service.dart';
@@ -146,7 +147,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => SignIn())); //TakeBikePage
+                      builder: (context) => TakeBikePage())); //TakeBikePage
             } else {
               showDialog(
                 context: context,

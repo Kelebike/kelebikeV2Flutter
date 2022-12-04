@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:kelebikev2/ui/views/home_screen.dart';
 import 'package:kelebikev2/ui/views/sign_up.dart';
 
 import '../../core/constant/style.dart';
@@ -210,7 +211,7 @@ class SignIn extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => SignIn())); //TODO
                 } else {
                   Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => SignIn())); //TODO
+                      MaterialPageRoute(builder: (context) => HomeScreen()));
                 }
               }
             } else {
