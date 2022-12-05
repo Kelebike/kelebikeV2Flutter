@@ -28,8 +28,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
 
     Widget startPage = SignIn();
-    var admin = "e.sal2019@gtu.edu.tr";
-    print(_user!.email);
+    var admin = "m.baygut2019@gtu.edu.tr";
     if (_user?.email == admin) {
       startPage = AdminScreen();
     }

@@ -59,7 +59,7 @@ class _BikePageState extends State<BikePage> {
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(8.0))),
                               content: Container(
-                                  height: 150,
+                                  height: 200,
                                   width: 150,
                                   decoration: const BoxDecoration(
                                     color: Colors.white,
