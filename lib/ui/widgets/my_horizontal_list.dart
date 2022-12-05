@@ -44,7 +44,7 @@ class MyHorizontalList extends StatelessWidget {
                 padding: const EdgeInsets.all(10),
                 height: 39,
                 decoration: BoxDecoration(
-                  color: const Color(0xFF6CA8F1),
+                  color: const Color.fromARGB(255, 29, 73, 167),
                   borderRadius: BorderRadius.circular(36),
                 ),
                 child: Text(
@@ -58,7 +58,7 @@ class MyHorizontalList extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: 80,
+              top: 60,
               left: 14,
               child: Text(
                 courseTitle,

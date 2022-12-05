@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -40,7 +39,7 @@ class _BikePageState extends State<BikePage> {
                 itemCount: snaphot.data!.docs.length,
                 itemBuilder: (context, index) {
                   DocumentSnapshot mypost = snaphot.data!.docs[index];
-                  if ('${mypost['returnDate']}' != "nontaken") {
+                  if ('${mypost['return']}' != "nontaken") {
                     if (DateTime.parse('${mypost['return']}')
                         .isBefore(DateTime.now())) {
                       _bikeService.updateStatus('${mypost['code']}', "expired");

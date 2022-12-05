@@ -108,11 +108,14 @@ class _adminAddBikePageState extends State<adminAddBikePage> {
         ),
         onPressed: () async {
           _bikeService.addBike(
-              lock: 'nontaken',
-              brand: _BrandController.text,
-              code: _CodeController.text,
-              status: 'nontaken',
-              owner: 'nontaken');
+            lock: 'nontaken',
+            brand: _BrandController.text,
+            code: _CodeController.text,
+            status: 'nontaken',
+            owner: 'nontaken',
+            dateIssued: "nontaken",
+            dateReturn: "nontaken",
+          );
           Navigator.pop(context);
           Navigator.pop(context);
           Navigator.push(

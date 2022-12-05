@@ -1,36 +1,46 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:kelebikev2/core/models/bike_model.dart';
 
-
 class BikeService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   String mediaUrl = '';
 
-  Future<ModelBike?> addBike(
-      {required brand, required code, required lock, required owner, required status}) async {
+  Future<ModelBike?> addBike({
+    required brand,
+    required code,
+    required lock,
+    required owner,
+    required status,
+    required dateIssued,
+    required dateReturn,
+  }) async {
     var ref = _firestore.collection("Bike");
     if (await isDuplicateUniqueName(code)) {
       return null;
     } else {
       var documentRef = await ref.add({
-        'brand' : brand,
-        'code' : code,
-        'lock' : lock,
-        'owner': owner,
-        'status' : status
+        'lock': lock,
+        'brand': brand,
+        'code': code,
+        'status': status,
+        'issued': dateIssued,
+        'return': dateIssued,
+        'owner': owner
       });
 
       return ModelBike(
-        brand: documentRef.id,
-        code: code,
-        lock: lock,
-        owner: owner,
-        status: status
-      );
+          id: documentRef.id,
+          lock: lock,
+          brand: brand,
+          code: code,
+          status: status,
+          dateIssued: dateIssued,
+          dateReturn: dateReturn,
+          owner: owner);
+    }
   }
-}
 
-Future<bool> isDuplicateUniqueName(String uniqueName) async {
+  Future<bool> isDuplicateUniqueName(String uniqueName) async {
     QuerySnapshot query = await FirebaseFirestore.instance
         .collection("Bike")
         .where('code', isEqualTo: uniqueName)
@@ -38,7 +48,7 @@ Future<bool> isDuplicateUniqueName(String uniqueName) async {
     return query.docs.isNotEmpty;
   }
 
-  Stream<QuerySnapshot> getBike() { 
+  Stream<QuerySnapshot> getBike() {
     var ref = _firestore.collection("Bike").snapshots();
     return ref;
   }
@@ -275,5 +285,4 @@ Future<bool> isDuplicateUniqueName(String uniqueName) async {
         });
     return flag;
   }
-
 }

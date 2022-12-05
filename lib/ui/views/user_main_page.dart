@@ -189,7 +189,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
       width: size.width * 0.65,
       child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xFF6CA8F1),
+            backgroundColor: const Color.fromARGB(255, 29, 73, 167),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
@@ -248,8 +248,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
             _showChoiseDialog(context);
           },
           child: Row(
-            mainAxisAlignment:
-                MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Icon(Icons.arrow_back),
               Text(
@@ -271,15 +270,13 @@ class _UserInfoPageState extends State<UserInfoPage> {
             : Column(
                 children: [
                   Container(
-                    color: Colors.green.shade200,
+                    color: const Color.fromARGB(255, 201, 226, 101),
                     height: size.height * 0.25,
                     child: Padding(
                       padding: const EdgeInsets.only(top: 10),
                       child: ListView.builder(
                           itemCount: 1,
                           itemBuilder: (context, index) {
-                            DocumentSnapshot mypost = snaphot.data!.docs[index];
-
                             return SizedBox(
                               height: size.height * .25,
                               child: ListView.builder(
@@ -296,10 +293,8 @@ class _UserInfoPageState extends State<UserInfoPage> {
                                           return MyHorizontalList(
                                             height: size.height * 0.18,
                                             width: size.width * 0.9,
-                                            startColor: const Color.fromARGB(
-                                                255, 193, 218, 241),
-                                            endColor: const Color.fromARGB(
-                                                255, 24, 106, 228),
+                                            startColor: const Color.fromARGB(255, 169, 187, 225),
+                                            endColor: const Color.fromARGB(255, 29, 73, 167),
                                             courseHeadline: "Total",
                                             courseTitle: "Available Bike:  " +
                                                 '${snapshot.data}',
@@ -333,253 +328,232 @@ class _UserInfoPageState extends State<UserInfoPage> {
     var taken_counter = 0;
     final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-    return StreamBuilder(
-        stream: _bikeService.getBike(),
-        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-          if (!snapshot.hasData) {
-            return const CircularProgressIndicator();
-          }
+    return Container(
+      alignment: Alignment.center,
+      height: size.height,
+      child: StreamBuilder(
+          stream: _bikeService.getBike(),
+          builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+            if (!snapshot.hasData) {
+              return const CircularProgressIndicator();
+            }
+            if (snapshot.connectionState == ConnectionState.done) {}
+            return FutureBuilder<int>(
+              future: _bikeService.findWithUserInfo(_user!.email.toString()),
+              builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
+                if (snapshot.hasData) {
+                  if (available('${snapshot.data}')) {
+                    return Scaffold(
+                        backgroundColor:
+                            const Color(0xFF6CA8F1).withOpacity(0.4),
+                        body: Column(
+                          children: [
+                            bikeAvailable(),
+                            Stack(
+                              children: [
+                                StreamBuilder<QuerySnapshot>(
+                                  stream: _bikeService.getBike(),
+                                  builder: (context, snaphot) {
+                                    return !snaphot.hasData
+                                        ? const CircularProgressIndicator()
+                                        : Column(
+                                            children: [
+                                              Container(
+                                                height: size.height * 0.75 - 60,
+                                                color: const Color.fromARGB(255, 201, 226, 101),
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          top: 10),
+                                                  child: ListView.builder(
+                                                      itemCount: snaphot
+                                                          .data!.docs.length,
+                                                      itemBuilder:
+                                                          (context, index) {
+                                                        DocumentSnapshot
+                                                            mypost = snaphot
+                                                                .data!
+                                                                .docs[index];
+                                                        if ("${mypost['owner']}" ==
+                                                                _user.email
+                                                                    .toString() &&
+                                                            "${mypost['status']}" ==
+                                                                "taken") {
+                                                          bikeCode =
+                                                              '${mypost['code']}';
+                                                          return SizedBox(
+                                                            height:
+                                                                size.height *
+                                                                    0.60,
+                                                            child: ListView
+                                                                .builder(
+                                                              scrollDirection:
+                                                                  Axis.vertical,
+                                                              physics:
+                                                                  const BouncingScrollPhysics(),
+                                                              itemCount: 1,
+                                                              itemBuilder:
+                                                                  (context,
+                                                                      index) {
+                                                                return Column(
+                                                                  children: [
+                                                                    MyHorizontalList(
+                                                                      height:
+                                                                          160,
+                                                                      width: size
+                                                                              .width *
+                                                                          0.9,
+                                                                      startColor: const Color.fromARGB(255, 169, 187, 225),
+                                                                      endColor: const Color.fromARGB(255, 29, 73, 167),
+                                                                      courseHeadline: LocalizationService.of(
+                                                                              context)
+                                                                          .translate(
+                                                                              'my_bike')!,
+                                                                      courseTitle:
+                                                                          '${LocalizationService.of(context).translate('bike_code_c_n')!}${mypost['code']}\n${LocalizationService.of(context).translate('lock')!}${mypost['lock']}',
+                                                                      courseImage:
+                                                                          'assets/logos/bike_woman.png',
+                                                                      scale:
+                                                                          2.5,
+                                                                    ),
+                                                                    Stack(
+                                                                      alignment:
+                                                                          Alignment
+                                                                              .centerLeft,
+                                                                      children: [
+                                                                        MyHorizontalList(
+                                                                          height:
+                                                                              180,
+                                                                          width:
+                                                                              size.width * .9,
+                                                                          startColor: const Color.fromARGB(255, 169, 187, 225),
+                                                                          endColor: const Color.fromARGB(255, 29, 73, 167),
+                                                                          courseHeadline:
+                                                                              LocalizationService.of(context).translate('rmn_time_n')!,
+                                                                          courseTitle: LocalizationService.of(context).translate('issued')! +
+                                                                              ' ${mypost['issued']}'.substring(0, 11) +
+                                                                              LocalizationService.of(context).translate('n_rtrn_n')! +
+                                                                              ' ${mypost['return']}'.substring(0, 11),
+                                                                          courseImage:
+                                                                              'assets/logos/countdown.png',
+                                                                          scale:
+                                                                              3,
+                                                                        ),
+                                                                        CountdownTimer(
+                                                                          endTime:
+                                                                              DateTime.parse("${mypost['return']}").millisecondsSinceEpoch,
+                                                                          widgetBuilder:
+                                                                              (_, CurrentRemainingTime? time) {
+                                                                            if (time ==
+                                                                                null) {
+                                                                              return Text(
+                                                                                '\n\n\n\n\n\n\n     Time Expired!',
+                                                                                style: GoogleFonts.roboto(
+                                                                                  fontWeight: FontWeight.bold,
+                                                                                  color: const Color.fromARGB(255, 115, 115, 115),
+                                                                                  fontSize: 20,
+                                                                                ),
+                                                                              ); //time expired
+                                                                            }
+                                                                            String
+                                                                                days =
+                                                                                '${time.days}';
 
-          if (snapshot.connectionState == ConnectionState.done) {}
-          return FutureBuilder<int>(
-            future: _bikeService.findWithUserInfo(_user!.email.toString()),
-            builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
-              if (snapshot.hasData) {
-                if (available('${snapshot.data}')) {
-                  return Scaffold(
-                      backgroundColor: const Color(0xFF6CA8F1).withOpacity(0.4),
-                      body: Column(
-                        children: [
-                          bikeAvailable(),
-                          Stack(
-                            children: [
-                              StreamBuilder<QuerySnapshot>(
-                                stream: _bikeService.getBike(),
-                                builder: (context, snaphot) {
-                                  return !snaphot.hasData
-                                      ? const CircularProgressIndicator()
-                                      : Column(
-                                          children: [
-                                            Container(
-                                              height: size.height * 0.75 - 60,
-                                              color: Colors.green.shade200,
-                                              child: Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 10),
-                                                child: ListView.builder(
-                                                    itemCount: snaphot
-                                                        .data!.docs.length,
-                                                    itemBuilder:
-                                                        (context, index) {
-                                                      DocumentSnapshot mypost =
-                                                          snaphot.data!
-                                                              .docs[index];
-                                                      if ("${mypost['owner']}" ==
-                                                              _user.email
-                                                                  .toString() &&
-                                                          "${mypost['status']}" ==
-                                                              "taken") {
-                                                        bikeCode =
-                                                            '${mypost['code']}';
-                                                        return SizedBox(
-                                                          //todo!
-                                                          height: size.height *
-                                                              0.60,
-                                                          child:
-                                                              ListView.builder(
-                                                            scrollDirection:
-                                                                Axis.vertical,
-                                                            physics:
-                                                                const BouncingScrollPhysics(),
-                                                            itemCount: 1,
-                                                            itemBuilder:
-                                                                (context,
-                                                                    index) {
-                                                              return Column(
-                                                                children: [
-                                                                  MyHorizontalList(
-                                                                    height: 200,
-                                                                    width:
-                                                                        size.width *
-                                                                            0.9,
-                                                                    startColor:
-                                                                        const Color.fromARGB(
-                                                                            255,
-                                                                            237,
-                                                                            187,
-                                                                            112),
-                                                                    endColor:
-                                                                        const Color.fromARGB(
-                                                                            255,
-                                                                            245,
-                                                                            180,
-                                                                            30),
-                                                                    courseHeadline: LocalizationService.of(
-                                                                            context)
-                                                                        .translate(
-                                                                            'my_bike')!,
-                                                                    courseTitle: '${LocalizationService.of(context).translate(
-                                                                            'bike_code_c_n')!}${mypost['code']}\n${LocalizationService.of(context)
-                                                                            .translate('lock')!}${mypost['lock']}',
-                                                                    courseImage:
-                                                                        'assets/logos/bike_woman.png',
-                                                                    scale: 1.7,
-                                                                  ),
-                                                                  Stack(
-                                                                    alignment:
-                                                                        Alignment
-                                                                            .centerLeft,
-                                                                    children: [
-                                                                      MyHorizontalList(
-                                                                        height:
-                                                                            200,
-                                                                        width: size.width *
-                                                                            .9,
-                                                                        startColor: const Color.fromARGB(
-                                                                            255,
-                                                                            233,
-                                                                            187,
-                                                                            187),
-                                                                        endColor: const Color.fromARGB(
-                                                                            255,
-                                                                            252,
-                                                                            95,
-                                                                            229),
-                                                                        courseHeadline:
-                                                                            LocalizationService.of(context).translate('rmn_time_n')!,
-                                                                        courseTitle: LocalizationService.of(context).translate('issued')! +
-                                                                            '${mypost['issued']}'.substring(0,
-                                                                                11) +
-                                                                            LocalizationService.of(context).translate(
-                                                                                'n_rtrn_n')! +
-                                                                            '${mypost['return']}'.substring(0,
-                                                                                11),
-                                                                        courseImage:
-                                                                            'assets/logos/countdown.png',
-                                                                        scale:
-                                                                            2.2,
-                                                                      ),
-                                                                      CountdownTimer(
-                                                                        endTime:
-                                                                            DateTime.parse("${mypost['return']}").millisecondsSinceEpoch,
-                                                                        widgetBuilder: (_,
-                                                                            CurrentRemainingTime?
-                                                                                time) {
-                                                                          if (time ==
-                                                                              null) {
+                                                                            String
+                                                                                hours =
+                                                                                '${time.hours}';
+
+                                                                            String
+                                                                                mins =
+                                                                                '${time.min}';
+                                                                            String
+                                                                                secs =
+                                                                                '${time.sec}';
+                                                                            if (time.days ==
+                                                                                null) {
+                                                                              days = "";
+                                                                            }
+                                                                            if (time.hours ==
+                                                                                null) {
+                                                                              hours = "";
+                                                                            }
+                                                                            if (time.min ==
+                                                                                null) {
+                                                                              mins = "";
+                                                                            }
+                                                                            if (time.sec ==
+                                                                                null) {
+                                                                              secs = "";
+                                                                            }
+
                                                                             return Text(
-                                                                              '\n\n\n\n\n\n\n     Time Expired!',
+                                                                              '\n\n\n\n\n\n      ${days.padLeft(2, '0')} : ${hours.padLeft(2, '0')} : ${mins.padLeft(2, '0')} : ${secs.padLeft(2, '0')}',
                                                                               style: GoogleFonts.roboto(
                                                                                 fontWeight: FontWeight.bold,
-                                                                                color: const Color.fromARGB(255, 115, 115, 115),
+                                                                                color: Colors.white70,
                                                                                 fontSize: 20,
                                                                               ),
                                                                             );
-                                                                            ; //time expired
-                                                                          }
-                                                                          String
-                                                                              days =
-                                                                              '${time.days}';
-
-                                                                          String
-                                                                              hours =
-                                                                              '${time.hours}';
-
-                                                                          String
-                                                                              mins =
-                                                                              '${time.min}';
-                                                                          String
-                                                                              secs =
-                                                                              '${time.sec}';
-                                                                          if (time.days ==
-                                                                              null) {
-                                                                            days =
-                                                                                "";
-                                                                          }
-                                                                          if (time.hours ==
-                                                                              null) {
-                                                                            hours =
-                                                                                "";
-                                                                          }
-                                                                          if (time.min ==
-                                                                              null) {
-                                                                            mins =
-                                                                                "";
-                                                                          }
-                                                                          if (time.sec ==
-                                                                              null) {
-                                                                            secs =
-                                                                                "";
-                                                                          }
-
-                                                                          return Text(
-                                                                            '\n\n\n\n\n\n\n      ${days.padLeft(2, '0')} : ${hours.padLeft(2, '0')} : ${mins.padLeft(2, '0')} : ${secs.padLeft(2, '0')}',
-                                                                            style:
-                                                                                GoogleFonts.roboto(
-                                                                              fontWeight: FontWeight.bold,
-                                                                              color: const Color.fromARGB(255, 115, 115, 115),
-                                                                              fontSize: 20,
-                                                                            ),
-                                                                          );
-                                                                        },
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                  _buildReturnBtn(
-                                                                      bikeCode),
-                                                                ],
-                                                              );
-                                                            },
-                                                          ),
-                                                        );
-                                                      } else if (("${mypost['owner']}" ==
-                                                                  _user.email
-                                                                      .toString() &&
-                                                              "${mypost['status']}" ==
-                                                                  "waiting") ||
-                                                          ("${mypost['owner']}" ==
-                                                                  _user.email
-                                                                      .toString() &&
-                                                              "${mypost['status']}" ==
-                                                                  "returned")) {
-                                                        return waitingForConfirmation();
-                                                      } else if ("${mypost['owner']}" ==
-                                                              _user.email
-                                                                  .toString() &&
-                                                          "${mypost['status']}" ==
-                                                              "expired") {
-                                                        return expiredUser(
-                                                            "${mypost['code']}");
-                                                      } else {
-                                                        return const SizedBox
-                                                            .shrink();
-                                                      }
-                                                    }),
+                                                                          },
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                    _buildReturnBtn(
+                                                                        bikeCode),
+                                                                  ],
+                                                                );
+                                                              },
+                                                            ),
+                                                          );
+                                                        } else if (("${mypost['owner']}" ==
+                                                                    _user.email
+                                                                        .toString() &&
+                                                                "${mypost['status']}" ==
+                                                                    "waiting") ||
+                                                            ("${mypost['owner']}" ==
+                                                                    _user.email
+                                                                        .toString() &&
+                                                                "${mypost['status']}" ==
+                                                                    "returned")) {
+                                                          return waitingForConfirmation();
+                                                        } else if ("${mypost['owner']}" ==
+                                                                _user.email
+                                                                    .toString() &&
+                                                            "${mypost['status']}" ==
+                                                                "expired") {
+                                                          return expiredUser(
+                                                              "${mypost['code']}");
+                                                        } else {
+                                                          return const SizedBox
+                                                              .shrink();
+                                                        }
+                                                      }),
+                                                ),
                                               ),
-                                            ),
-                                          ],
-                                        );
-                                },
-                              ),
-                            ],
-                          ),
-                        ],
-                      ));
+                                            ],
+                                          );
+                                  },
+                                ),
+                              ],
+                            ),
+                          ],
+                        ));
+                  } else {
+                    return Scaffold(
+                        backgroundColor: Colors.green.shade200,
+                        body: Column(
+                          children: [
+                            bikeAvailable(),
+                            takeBikeUserInfo(),
+                          ],
+                        ));
+                  }
                 } else {
-                  return Scaffold(
-                      backgroundColor: Colors.green.shade200,
-                      body: Column(
-                        children: [
-                          bikeAvailable(),
-                          takeBikeUserInfo(),
-                        ],
-                      ));
+                  return const Text('Loading...');
                 }
-              } else {
-                return const Text('Loading...');
-              }
-            },
-          );
-        });
+              },
+            );
+          }),
+    );
   }
 }

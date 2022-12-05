@@ -10,9 +10,20 @@ class ModelBike {
   String? code;
   String? lock;
   String? owner;
-  Bool? status;
+  String? status;
+  String? dateIssued;
+  String? dateReturn;
 
-  ModelBike({this.id, this.brand, this.code, this.owner, this.lock, this.status});
+  ModelBike({
+    required this.id,
+    required this.lock,
+    required this.brand,
+    required this.code,
+    required this.status,
+    required this.dateIssued,
+    required this.dateReturn,
+    required this.owner,
+  });
 
   factory ModelBike.fromSnapshot(DocumentSnapshot snapshot) {
     return ModelBike(
@@ -21,6 +32,8 @@ class ModelBike {
         brand: snapshot["brand"],
         code: snapshot["code"],
         status: snapshot["status"],
+        dateIssued: snapshot["issued"],
+        dateReturn: snapshot["return"],
         owner: snapshot["owner"]);
   }
 }

@@ -26,11 +26,14 @@ class MyApp extends StatelessWidget {
   bool loggedIn = false;
   @override
   Widget build(BuildContext context) {
-    Widget startPage = SignIn();
 
-    if (_user?.email == "sal2019@gtu.edu.tr") {
+    Widget startPage = SignIn();
+    var admin = "e.sal2019@gtu.edu.tr";
+    print(_user!.email);
+    if (_user?.email == admin) {
       startPage = AdminScreen();
-    }else if(_user?.email != null){
+    }
+    else if(_user?.email != null && _user?.email != admin){
       startPage = HomeScreen();
     } 
     else {
