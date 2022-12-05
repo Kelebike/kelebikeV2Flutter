@@ -1,11 +1,13 @@
+import 'dart:ffi';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kelebikev2/ui/views/admin_info_page.dart';
 import 'package:kelebikev2/ui/views/admin_screen.dart';
+import 'package:kelebikev2/ui/views/home_screen.dart';
 import 'package:kelebikev2/ui/views/sign_in.dart';
-import 'package:kelebikev2/ui/views/view_login.dart';
 import 'core/services/localization_service.dart';
 import 'firebase_options.dart';
 
@@ -26,9 +28,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget startPage = SignIn();
 
-    if (_user?.email == "e.sal2019@gtu.edu.tr") {
-      startPage = AdminInfoPage();
-    } else {
+    if (_user?.email == "sal2019@gtu.edu.tr") {
+      startPage = AdminScreen();
+    }else if(_user?.email != null){
+      startPage = HomeScreen();
+    } 
+    else {
       startPage = SignIn();
     }
 

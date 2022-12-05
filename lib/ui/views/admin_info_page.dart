@@ -38,7 +38,7 @@ class _AdminInfoPageState extends State<AdminInfoPage> {
             children: [
               Expanded(
                 child: Container(
-                  height: size.height * 0.55,
+                  height: size.height*0.9,
                   color: Colors.white,
                   child: Padding(
                     padding: const EdgeInsets.only(top: 10),
@@ -46,7 +46,6 @@ class _AdminInfoPageState extends State<AdminInfoPage> {
                         itemCount: 1,
                         itemBuilder: (context, index) {
                           DocumentSnapshot mypost = snapshot.data!.docs[index];
-
                           return SizedBox(
                             height: size.height ,
                             child: ListView.builder(
@@ -62,7 +61,7 @@ class _AdminInfoPageState extends State<AdminInfoPage> {
                                           AsyncSnapshot<int> snapshot) {
                                         if (snapshot.hasData) {
                                           return MyHorizontalList(
-                                            height: size.height * 0.16,
+                                            height: size.height*0.15,
                                             width: size.width*0.9,
                                             startColor: Colors.orange.shade100,
                                             endColor: const Color.fromARGB(255, 241, 113, 33),
@@ -86,7 +85,7 @@ class _AdminInfoPageState extends State<AdminInfoPage> {
                                           AsyncSnapshot<int> snapshot) {
                                         if (snapshot.hasData) {
                                           return MyHorizontalList(
-                                            height: size.height * 0.16,
+                                            height: size.height*0.15,
                                             width: size.width*0.9,
                                             startColor: const Color.fromARGB(255, 205, 248, 241),
                                             endColor: const Color.fromARGB(
@@ -111,7 +110,7 @@ class _AdminInfoPageState extends State<AdminInfoPage> {
                                           AsyncSnapshot<int> snapshot) {
                                         if (snapshot.hasData) {
                                           return MyHorizontalList(
-                                            height: size.height * 0.16,
+                                            height: size.height*0.15,
                                             width: size.width*0.9,
                                             startColor: const Color.fromARGB(
                                                 255, 215, 212, 207),
@@ -137,7 +136,7 @@ class _AdminInfoPageState extends State<AdminInfoPage> {
                                           AsyncSnapshot<int> snapshot) {
                                         if (snapshot.hasData) {
                                           return MyHorizontalList(
-                                            height: size.height * 0.16,
+                                            height: size.height*0.15,
                                             width: size.width*0.9,
                                             startColor: const Color.fromARGB(
                                                 255, 225, 246, 133),
@@ -163,7 +162,7 @@ class _AdminInfoPageState extends State<AdminInfoPage> {
                                           AsyncSnapshot<int> snapshot) {
                                         if (snapshot.hasData) {
                                           return MyHorizontalList(
-                                            height: size.height * 0.16,
+                                            height: size.height*0.15,
                                             width: size.width*0.9,
                                             startColor: const Color.fromARGB(
                                                 255, 191, 208, 172),
@@ -189,7 +188,7 @@ class _AdminInfoPageState extends State<AdminInfoPage> {
                                           AsyncSnapshot<int> snapshot) {
                                         if (snapshot.hasData) {
                                           return MyHorizontalList(
-                                            height: size.height * 0.16,
+                                            height: size.height*0.15,
                                             width: size.width*0.9,
                                             startColor: const Color.fromARGB(
                                                 255, 240, 216, 232),
