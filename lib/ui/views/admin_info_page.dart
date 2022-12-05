@@ -62,17 +62,17 @@ class _AdminInfoPageState extends State<AdminInfoPage> {
                                           AsyncSnapshot<int> snapshot) {
                                         if (snapshot.hasData) {
                                           return MyHorizontalList(
-                                            height: 100,
+                                            height: size.height * 0.16,
                                             width: size.width*0.9,
                                             startColor: Colors.orange.shade100,
-                                            endColor: Color.fromARGB(255, 241, 113, 33),
+                                            endColor: const Color.fromARGB(255, 241, 113, 33),
                                             courseHeadline: 'Toplam',
                                             courseTitle:
                                                 'Toplam Bisiklet Sayısı : ' +
                                                     '${snapshot.data}',
                                             courseImage:
-                                                'assets/logos/total.png',
-                                            scale: 50,
+                                                'assets/logos/myavailbike.png',
+                                            scale: 25,
                                           );
                                         } else {
                                           return const CircularProgressIndicator();
@@ -86,9 +86,9 @@ class _AdminInfoPageState extends State<AdminInfoPage> {
                                           AsyncSnapshot<int> snapshot) {
                                         if (snapshot.hasData) {
                                           return MyHorizontalList(
-                                            height: 100,
+                                            height: size.height * 0.16,
                                             width: size.width*0.9,
-                                            startColor: Color.fromARGB(255, 205, 248, 241),
+                                            startColor: const Color.fromARGB(255, 205, 248, 241),
                                             endColor: const Color.fromARGB(
                                                 255, 54, 235, 244),
                                             courseHeadline: 'Uygun Bisiklet',
@@ -111,7 +111,7 @@ class _AdminInfoPageState extends State<AdminInfoPage> {
                                           AsyncSnapshot<int> snapshot) {
                                         if (snapshot.hasData) {
                                           return MyHorizontalList(
-                                            height: 100,
+                                            height: size.height * 0.16,
                                             width: size.width*0.9,
                                             startColor: const Color.fromARGB(
                                                 255, 215, 212, 207),
@@ -137,7 +137,7 @@ class _AdminInfoPageState extends State<AdminInfoPage> {
                                           AsyncSnapshot<int> snapshot) {
                                         if (snapshot.hasData) {
                                           return MyHorizontalList(
-                                            height: 100,
+                                            height: size.height * 0.16,
                                             width: size.width*0.9,
                                             startColor: const Color.fromARGB(
                                                 255, 225, 246, 133),
@@ -163,7 +163,7 @@ class _AdminInfoPageState extends State<AdminInfoPage> {
                                           AsyncSnapshot<int> snapshot) {
                                         if (snapshot.hasData) {
                                           return MyHorizontalList(
-                                            height: 100,
+                                            height: size.height * 0.16,
                                             width: size.width*0.9,
                                             startColor: const Color.fromARGB(
                                                 255, 191, 208, 172),
@@ -189,7 +189,7 @@ class _AdminInfoPageState extends State<AdminInfoPage> {
                                           AsyncSnapshot<int> snapshot) {
                                         if (snapshot.hasData) {
                                           return MyHorizontalList(
-                                            height: 100,
+                                            height: size.height * 0.16,
                                             width: size.width*0.9,
                                             startColor: const Color.fromARGB(
                                                 255, 240, 216, 232),

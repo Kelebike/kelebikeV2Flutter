@@ -69,10 +69,10 @@ class _TakeBikePageState extends State<TakeBikePage> {
                   height: 250,
                   child: Column(
                     children: [
-                      Text("This bike is already taken."),
+                      const Text("This bike is already taken."),
                       _buildLock(),
                       Container(
-                        padding: EdgeInsets.symmetric(vertical: 25),
+                        padding: const EdgeInsets.symmetric(vertical: 25),
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: () async {
@@ -87,8 +87,8 @@ class _TakeBikePageState extends State<TakeBikePage> {
                               showDialog(
                                   context: context,
                                   builder: (_) => AlertDialog(
-                                        title: Text('Error'),
-                                        content: Text('Lock is wrong!'),
+                                        title: const Text('Error'),
+                                        content: const Text('Lock is wrong!'),
                                         actions: <Widget>[
                                           TextButton(
                                             child: const Text("OK"),
@@ -105,7 +105,7 @@ class _TakeBikePageState extends State<TakeBikePage> {
                             }
                           },
                           style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.all(15.0),
+                            padding: const EdgeInsets.all(15.0),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30.0),
                             ),

@@ -129,7 +129,8 @@ class _UserInfoPageState extends State<UserInfoPage> {
   Widget _buildTakeBtn() {
     User? _user = FirebaseAuth.instance.currentUser;
     var size = MediaQuery.of(context).size;
-    return Container(
+    return SizedBox(
+      height: 50,
       width: size.width * 0.65,
       child: ElevatedButton(
           style: ElevatedButton.styleFrom(
@@ -303,8 +304,8 @@ class _UserInfoPageState extends State<UserInfoPage> {
                                             courseTitle: "Available Bike:  " +
                                                 '${snapshot.data}',
                                             courseImage:
-                                                'assets/logos/total.png',
-                                            scale: 30,
+                                                'assets/logos/myavailbike.png',
+                                            scale: 15,
                                           );
                                         } else {
                                           return const CircularProgressIndicator();

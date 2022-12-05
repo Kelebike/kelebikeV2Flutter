@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kelebikev2/ui/views/admin_info_page.dart';
+import 'package:kelebikev2/ui/views/admin_screen.dart';
 import 'package:kelebikev2/ui/views/sign_in.dart';
 import 'package:kelebikev2/ui/views/view_login.dart';
 import 'core/services/localization_service.dart';
@@ -24,8 +26,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget startPage = SignIn();
 
-    if (_user?.email == "admin") {
-      startPage = ViewLogin();
+    if (_user?.email == "e.sal2019@gtu.edu.tr") {
+      startPage = AdminInfoPage();
     } else {
       startPage = SignIn();
     }
